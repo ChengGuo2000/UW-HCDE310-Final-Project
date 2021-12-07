@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Catching the Right Objective Word</title>
+</head>
+<body>
+<form action="/" method="post">
+    <label for="word">Please enter a word to get a list of synonyms:</label>
+    <input type="text" id="word" name="word" /><br />
+    <input type="checkbox" name="definitions" value="definitions" id="definitions"/>
+	 <label for="definitions">Include definitions for synonyms</label><br />
+    <input type="submit" value="Get words" name="gobtn"/>
+</form>
+{% if prompt %}
+<div class='formtitle'>{{prompt}}</div>
+{% elif word %}
+<h1 style="font-family:papyrus;">{{page_title}}</h1>
+    {% if wantDefinitions == "definitions" %}
+        <table>
+            <tr>
+                <th style="font-family:papyrus;">word</th>
+                <th style="font-family:papyrus;">definition</th>
+            </tr>
+            {% for word,short_def in def_dict.items() %}
+            <tr>
+                    <td style="font-family:papyrus;">{{word}}</td>
+                    <td style="font-family:papyrus;">{{short_def}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        {% for word in syn_list %}
+            <h3 style="font-family:papyrus;">{{word}}</h3>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+</body>
+</html>
