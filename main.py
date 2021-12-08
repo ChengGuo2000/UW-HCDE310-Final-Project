@@ -2,8 +2,11 @@
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 from flask import Flask, render_template, request
+import numpy
+from PIL import Image
 import json, urllib
 from wordcloud import WordCloud
+from random2 import randint
 import matplotlib.pyplot as plt
 
 app = Flask("Final_Project")
@@ -44,7 +47,9 @@ def get_frequency(word_list):
     return freq_dict
 
 def make_word_cloud(freq_dict):
-    cloud = WordCloud(background_color="Moccasin")
+    image_name = "crow_images/crow" + str(randint(1,6)) + ".jpg"
+    crow_mask = numpy.array(Image.open(image_name))
+    cloud = WordCloud(background_color="Moccasin", mask = crow_mask)
     cloud.generate_from_frequencies(freq_dict)
     plt.imshow(cloud, interpolation="bilinear")
     plt.axis("off")
