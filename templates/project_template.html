@@ -1,38 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Catching the Right Objective Word</title>
+<title>CROW</title>
 </head>
-<body>
-<form action="/" method="post">
-    <label for="word">Please enter a word to get a list of synonyms:</label>
-    <input type="text" id="word" name="word" /><br />
-    <input type="checkbox" name="definitions" value="definitions" id="definitions"/>
-	 <label for="definitions">Include definitions for synonyms</label><br />
-    <input type="submit" value="Get words" name="gobtn"/>
+<body style="background-color:Moccasin;">
+<h1 style="color:SaddleBrown;font-family:papyrus;text-align:center;">Catching the Right Objective Word</h1>
+<form action="/" method="post" style="text-align:center;">
+    <label for="word" style="color:SaddleBrown;font-family:papyrus;text-align:center;">Search a stronger word for:</label>
+    <input type="text" id="word" name="word" style="font-family:papyrus;text-align:center;"/>
+    <input type="submit" value="Catch" name="gobtn" style="color:SaddleBrown;font-family:papyrus;"/>
 </form>
 {% if prompt %}
-<div class='formtitle'>{{prompt}}</div>
+<div class='formtitle' style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{prompt}}</div>
 {% elif word %}
-<h1 style="font-family:papyrus;">{{page_title}}</h1>
-    {% if wantDefinitions == "definitions" %}
-        <table>
-            <tr>
-                <th style="font-family:papyrus;">word</th>
-                <th style="font-family:papyrus;">definition</th>
-            </tr>
-            {% for word,short_def in def_dict.items() %}
-            <tr>
-                    <td style="font-family:papyrus;">{{word}}</td>
-                    <td style="font-family:papyrus;">{{short_def}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        {% for word in syn_list %}
-            <h3 style="font-family:papyrus;">{{word}}</h3>
-        {% endfor %}
-    {% endif %}
+<h1 style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{page_title}}</h1>
+    {% for word in syn_list %}
+        <h3 style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{word}}</h3>
+    {% endfor %}
 {% endif %}
 </body>
 </html>

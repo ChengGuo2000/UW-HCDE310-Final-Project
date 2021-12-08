@@ -2,9 +2,14 @@
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 from flask import Flask, render_template, request
-import logging, json, urllib
+from random2 import randint
+import json, urllib
+import numpy as np
+from PIL import Image
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
-app = Flask("HW7")
+app = Flask("Final_Project")
 
 def get_synonyms(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
     key_dict = {"key": key}
@@ -26,44 +31,45 @@ def get_synonyms_safe(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
         print("Error: " + str(error))
     return result
 
-def get_def(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
-    key_dict = {"key": key}
-    keystr = urllib.parse.urlencode(key_dict)
-    word = word.split(" ")[-1]
-    request_url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/" + word + "?" + keystr
-    request_str = urllib.request.urlopen(request_url).read()
-    word_json = json.loads(request_str)
-    word_def = word_json[-1]["shortdef"][0]
-    return word_def
+def get_frequency(word_list):
+    new_list = word_list
+    for word in word_list:
+        new_part = get_synonyms_safe(word)
+        for new_word in new_part:
+            new_list.append(new_word)
+    freq_dict = {}
+    for word in word_list:
+        if word not in freq_dict:
+            freq_dict[word] = 0
+        else:
+            freq_dict[word] += 1
+    return freq_dict
 
-def get_def_safe(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
-    try:
-        result = get_def(word = word, key = key)
-    except Exception as error:
-        print("Error: " + str(error))
-    return result
+def make_word_cloud(freq_dict):
+    img_name = "crow" + str(randint(1,6)) + ".png"
+    crow_mask = np.array(Image.open(img_name))
+    cloud = WordCloud(background_color="Moccasin", mask=crow_mask)
+    cloud.generate_from_frequencies(freq_dict)
+    plt.imshow(cloud)
+    plt.axis("off")
+    plt.show()
+    plt.savefig("wordcloud.png")
+
+
 
 @app.route("/",methods=["GET","POST"])
 def main_handler():
     app.logger.info("In MainHandler")
     word = request.form.get('word')
-    wantDefinitions = request.form.get("definitions")
     if word:
         syn_list = get_synonyms_safe(word)
         page_title = "Synonyms for %s"%word
-        def_dict = {}
-        for word in syn_list:
-            new_word = "-".join(word.split(" "))
-            short_def = get_def_safe(new_word)
-            def_dict[word] = short_def
-        return render_template('hw7form.html',
+        return render_template('project_template.html',
             word=word,
-            wantDefinitions = wantDefinitions,
             page_title=page_title,
-            syn_list = syn_list,
-            def_dict = def_dict)
+            syn_list = syn_list)
     else:
-        return render_template('hw7form.html',
+        return render_template('project_template.html',
             page_title="HW7 Synonyms - Error",
             prompt="We need a word")
 
