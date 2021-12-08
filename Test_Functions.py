@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
-from flask import Flask, render_template, request
 import json, urllib
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-
-app = Flask("Final_Project")
 
 def get_synonyms(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
     key_dict = {"key": key}
@@ -50,21 +47,7 @@ def make_word_cloud(freq_dict):
     plt.axis("off")
     plt.show()
 
-@app.route("/",methods=["GET","POST"])
-def main_handler():
-    app.logger.info("In MainHandler")
-    word = request.form.get('word')
-    if word:
-        syn_list = get_synonyms_safe(word)
-        syn_dict = get_frequency(syn_list)
-        cloud_image = make_word_cloud(syn_dict)
-        return render_template('project_template.html',
-            word=word,
-            cloud_image = cloud_image)
-    else:
-        return render_template('project_template.html',
-            page_title="CROW - Error",
-            prompt="We need a word")
-
-if __name__ == "__main__":
-    app.run(host="localhost", port=8080, debug=True)
+word = "Python"
+word_list = get_synonyms_safe(word)
+syn_dict = get_frequency(word_list)
+make_word_cloud(syn_dict)

@@ -13,10 +13,7 @@
 {% if prompt %}
 <div class='formtitle' style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{prompt}}</div>
 {% elif word %}
-<h1 style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{page_title}}</h1>
-    {% for word in syn_list %}
-        <h3 style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{word}}</h3>
-    {% endfor %}
+<img src=cloud_image width='200' height='200' alt='word_cloud' />
 {% endif %}
 </body>
 </html>
