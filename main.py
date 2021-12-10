@@ -17,11 +17,12 @@ def get_synonyms(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
     request_url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/" + word + "?" + keystr
     request_str = urllib.request.urlopen(request_url).read()
     word_json = json.loads(request_str)
-    syns_lists = word_json[0]["meta"]["syns"]
     final_list = []
-    for syns in syns_lists:
-        for syn in syns:
-            final_list.append(syn)
+    for part_list in word_json:
+        syns_lists = part_list["meta"]["syns"]
+        for syns in syns_lists:
+            for syn in syns:
+                final_list.append(syn)
     return final_list
 
 def get_synonyms_safe(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
