@@ -13,7 +13,7 @@
 {% if prompt %}
 <div class='formtitle' style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{prompt}}</div>
 {% elif word %}
-<img src=cloud_image width='200' height='200' alt='word_cloud' />
+<div class='formtitle' style="font-family:papyrus;text-align:center;">{{cloud_image | safe}}</div>
 {% endif %}
 </body>
 </html>

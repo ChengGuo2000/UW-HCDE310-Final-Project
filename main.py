@@ -43,6 +43,7 @@ def get_frequency(word_list, used):
         if word not in freq_dict:
             freq_dict[word] = 0
         freq_dict[word] += 1
+    used = used.lower()
     new_dict = {key: val for key, val in freq_dict.items() if key != used}
     return new_dict
 
@@ -58,7 +59,7 @@ def make_word_cloud(freq_dict):
     crow_mask = numpy.array(Image.open(image_name))
     cloud = WordCloud(background_color="Moccasin", mask = crow_mask)
     cloud.generate_from_frequencies(freq_dict)
-    return cloud.to_image()
+    return cloud.to_svg()
 
 def make_word_cloud_safe(freq_dict):
     try:
