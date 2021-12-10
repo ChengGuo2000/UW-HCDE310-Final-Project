@@ -17,7 +17,7 @@ def get_synonyms(word, key = "b218b944-89f2-4f6d-909e-37649d0fc5fa"):
     request_url = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/" + word + "?" + keystr
     request_str = urllib.request.urlopen(request_url).read()
     word_json = json.loads(request_str)
-    syns_lists = word_json[-1]["meta"]["syns"]
+    syns_lists = word_json[0]["meta"]["syns"]
     final_list = []
     for syns in syns_lists:
         for syn in syns:
