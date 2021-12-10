@@ -3,17 +3,17 @@
 <head>
 <title>CROW</title>
 </head>
-<body style="background-color:Moccasin;">
-<h1 style="color:SaddleBrown;font-family:papyrus;text-align:center;">Catching the Right Objective Word</h1>
+<body style="background-color:black;">
+<h1 style="color:white;text-align:center;">Catching the Right Objective Word</h1>
 <form action="/" method="post" style="text-align:center;">
-    <label for="word" style="color:SaddleBrown;font-family:papyrus;text-align:center;">Search a stronger word for:</label>
-    <input type="text" id="word" name="word" style="font-family:papyrus;text-align:center;"/>
-    <input type="submit" value="Catch" name="gobtn" style="color:SaddleBrown;font-family:papyrus;"/>
+    <label for="word" style="color:white;text-align:center;">Search stronger words for:</label>
+    <input type="text" id="word" name="word" style="text-align:center;"/>
+    <input type="submit" value="Catch" name="gobtn" style="color:black;"/>
 </form>
 {% if prompt %}
-<div class='formtitle' style="color:SaddleBrown;font-family:papyrus;text-align:center;">{{prompt}}</div>
+<div class='formtitle' style="color:white;text-align:center;">{{prompt}}</div>
 {% elif word %}
-<div class='formtitle' style="font-family:papyrus;text-align:center;">{{cloud_image | safe}}</div>
+<div class='formtitle' style="text-align:center;">{{cloud_image | safe}}</div>
 {% endif %}
 </body>
 </html>

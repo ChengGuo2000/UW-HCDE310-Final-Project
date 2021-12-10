@@ -57,7 +57,7 @@ def get_frequency_safe(word_list, used):
 def make_word_cloud(freq_dict):
     image_name = "crow_images/crow" + str(randint(1,6)) + ".jpg"
     crow_mask = numpy.array(Image.open(image_name))
-    cloud = WordCloud(background_color="Moccasin", mask = crow_mask)
+    cloud = WordCloud(background_color="black", mask = crow_mask)
     cloud.generate_from_frequencies(freq_dict)
     return cloud.to_svg()
 
