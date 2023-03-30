@@ -1,5 +1,4 @@
 # Catching the Right, Objective Word (CROW)
-**UW HCDE 310 - Final Project**
 http://chengguo2000.pythonanywhere.com/
 
 **Overview**
