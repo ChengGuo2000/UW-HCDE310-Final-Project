@@ -2,10 +2,6 @@
 ## UW HCDE 310 - Final Project
 Product: http://chengguo2000.pythonanywhere.com/
 
-Portfolio: https://chengguo2000.weebly.com/crow.html
-
-Video: www.youtube.com/watch?v=1MZTyFUK7H4
-
 ## Overview
 As a third-year undergraduate student, students of my age must start looking for internships. The process of finding a job both enlarges our vision and deepens our understanding of the industry. When we apply for internships, we are required to present our resumé. During my study in the class HCDE 321: Professional Portfolio, we are encouraged to use strong words in our resumé to keep recruiters hooked as we make our points. 
 
