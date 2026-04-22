@@ -1,5 +1,4 @@
-# Catching the Right, Objective Word (CROW)
-http://chengguo2000.pythonanywhere.com/
+# Catching the Right, Optimal Word (CROW)
 
 ## Overview
 As third-year undergraduate students, students of my age must start looking for internships. The process of finding a job both enlarges our vision and deepens our understanding of the industry. When we apply for internships, we are required to present our resumé. During my study in the class HCDE 321: Professional Portfolio, we are encouraged to use strong words in our resumé to keep recruiters hooked as we make our points. 
